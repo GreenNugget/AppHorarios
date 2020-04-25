@@ -12,29 +12,23 @@ function consultToDB($sentence){
     return $conexion->query($sql);
 }
 
-/* Function to get the Id's of the group */
-function getSessionsId($idGroup){
-    $result = consultToDB("select clv_sesion from (sesiones join horarios on sesiones.id_horario=horarios.id_horario) where id_grupo='$idGroup'");
-
-    $id_session[] = "";
+function getHorariosData($result)
+{
     while ($fila = mysqli_fetch_assoc($result)) {
-        $id_session[] = $fila['clv_sesion'];
-    }
-    unset($id_session[0]);
-        
-    return $id_session;
-}
 
-function getHorarioId($idGroup){
-    $result = consultToDB("select id_horario from (horarios join clases) where id_grupo='$idGroup' AND horarios.id_clase=clases.id_clase");
+        $horariosArray = array(
+            'profesor' => $fila['nombre_profesor'],
+            'materia' => $fila['nombre_mate'],
+            'hInicio' => $fila['hora_inicio'],
+            'hFinal' => $fila['hora_final'],
+            'diasImp' => $fila['dias_impartidos'],
+            'aula' => $fila['descripcion']
+        );
 
-    $idHorarios[] = "";
-    while ($fila = mysqli_fetch_assoc($result)) {
-        $idHorarios[] = $fila['id_horario'];
+        $horariosJSON = json_encode($horariosArray);
+        echo $horariosJSON; //Luego de esto iría la parte para enviarlo al js para mandarlo a la vista
+        echo "<br>";
     }
-    unset($idHorarios[0]);
-    
-    return $idHorarios;
 }
 
 ?>
