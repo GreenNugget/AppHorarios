@@ -1,3 +1,4 @@
-# The Schedex Project
+# The Schedex Project (Backend)
 
-Este es un repositorio para el proyecto de la materia de Aseguramiento de la Calidad de Software
+This repo is for the backend of our project for the subject of software quality assurance.
+(We are still working...we need a better README too)
