@@ -1,26 +1,72 @@
 <?php
 include 'functions_insert.php';
 
-//Logic to recover all the info (JSON format)
-
-//Then we are supposed to have all the data that is required to fill the table in the db, like this:
-$group = 'G789';
-$classroom = 'C5';
-$profesor_name = 'Luis Mario Góngora León';
-$subject_name = 'Bases de datos';
-$sessions = '{
-    "sesiones":{
-        "dia": "Lunes",
-        "hora_inicio":"03:05",
-        "hora_final": "04:05"
+//we receive a JSON format
+$horariosJSON = '{
+  "nombreGrupo": "A003",
+  "clases": [
+    {
+      "profesor": {
+        "nombre_profesor": "Juan Francisco Garcilazo Ortiz"
+      },
+      "materia": {
+        "nombre_mate": "Construcción de Software",
+        "hrs_semana": 4.5
+      },
+      "aula": {
+        "descripcion": "Laboratorio 1"
+      },
+      "horarios": [
+        {
+          "dia": "Lunes",
+          "inicio": 6,
+          "final": 8
+        },
+        {
+          "dia": "Martes",
+          "inicio": 7,
+          "final": 9
+        }
+      ]
+    },
+    {
+      "profesor": {
+        "nombre_profesor": "Maria Diodora Kantun Chim"
+      },
+      "materia": {
+        "nombre_mate": "Aseguramiento de la calidad de Software",
+        "hrs_semana": 4.5
+      },
+      "aula": {
+        "descripcion": "CC8"
+      },
+      "horarios": [
+        {
+          "dia": "Jueves",
+          "inicio": "7:00",
+          "final": 8.5
+        }
+      ]
     }
+  ]
 }';
 
-$jsonObject = json_decode($sessions);
-foreach ($jsonObject->sesiones as $v) {
-    echo "$v" . "<br>";
-}
 
+$horariosDecoded = json_decode($horariosJSON);
+$counter = 1;
+foreach ($horariosDecoded->clases as $mydata) {
+    echo "HORARIO " . "$counter" . "<br>";
+    echo $mydata->profesor->nombre_profesor . "<br>";
+    echo $mydata->materia->nombre_mate . "<br>";
+    echo $mydata->aula->descripcion . "<br>";
+    foreach ($mydata->horarios as $values) {
+        echo $values->dia . "<br> ";
+        echo $values->inicio . "<br> ";
+        echo $values->final . "<br> ";
+    }
+    echo "-------------------------------------";
+    $counter++;
+}
 
 
 /*
