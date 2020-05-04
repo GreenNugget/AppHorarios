@@ -4,14 +4,26 @@ include 'functions_insert.php';
 //Logic to recover all the info (JSON format)
 
 //Then we are supposed to have all the data that is required to fill the table in the db, like this:
-$day = 'Lunes';
 $group = 'G789';
 $classroom = 'C5';
-$start_hour = '01:30';
-$finish_hour = '03:00';
 $profesor_name = 'Luis Mario Góngora León';
 $subject_name = 'Bases de datos';
+$sessions = '{
+    "sesiones":{
+        "dia": "Lunes",
+        "hora_inicio":"03:05",
+        "hora_final": "04:05"
+    }
+}';
 
+$jsonObject = json_decode($sessions);
+foreach ($jsonObject->sesiones as $v) {
+    echo "$v" . "<br>";
+}
+
+
+
+/*
 //We need some keys to add rows to the tables, so we search them
 $idClass= createNewId('clases');
 $idSched = createNewId('horarios');
@@ -44,6 +56,6 @@ if($conexion){
     }
 
     $conexion->close();
-}
+}*/
 
 ?>
