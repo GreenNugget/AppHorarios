@@ -14,12 +14,12 @@
       },
       "sesiones": [
         {
-          "dia": "Lunes",
+          "dia": "1",
           "inicio": 6,
           "final": 8
         },
         {
-          "dia": "Martes",
+          "dia": "2",
           "inicio": 7,
           "final": 9
         }
@@ -38,7 +38,7 @@
       },
       "sesiones": [
         {
-          "dia": "Jueves",
+          "dia": "4",
           "inicio": 7,
           "final": 8.5
         }
