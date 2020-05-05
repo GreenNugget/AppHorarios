@@ -1,0 +1,48 @@
+{
+  "nombreGrupo": "G123",
+  "clases": [
+    {
+      "profesor": {
+        "nombre_profesor": "Juan Francisco Garcilazo Ortiz"
+      },
+      "materia": {
+        "nombre_mate": "Construcción de Software",
+        "hrs_semana": 4.5
+      },
+      "aula": {
+        "descripcion": "Laboratorio I"
+      },
+      "sesiones": [
+        {
+          "dia": "Lunes",
+          "inicio": 6,
+          "final": 8
+        },
+        {
+          "dia": "Martes",
+          "inicio": 7,
+          "final": 9
+        }
+      ]
+    },
+    {
+      "profesor": {
+        "nombre_profesor": "Luis Mario Góngora León"
+      },
+      "materia": {
+        "nombre_mate": "Didáctica del Cálculo",
+        "hrs_semana": 4.5
+      },
+      "aula": {
+        "descripcion": "CC5"
+      },
+      "sesiones": [
+        {
+          "dia": "Jueves",
+          "inicio": 7,
+          "final": 8.5
+        }
+      ]
+    }
+  ]
+}
