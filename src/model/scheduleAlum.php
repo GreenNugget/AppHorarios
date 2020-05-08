@@ -6,12 +6,11 @@ $idGroup = "G123";//Aquí se cambiaría por el valor del grupo obtenido de acuer
 if($conexion = connectToDB()){
 
     //Consulta para obtener los datos del horario
-    $sql = "select nombre_profesor,nombre_mate,hora_inicio,hora_final,dias_impartidos,descripcion from 
-    (((((horarios join clases)
-    join sesiones)join aulas on aulas.id_aula=sesiones.id_aula)
-    join profesores on clases.clv_profe=profesores.clv_profe)
+    $sql = "select descripcion, sesiones, nombre_profesor, nombre_mate from
+    ((((horarios join clases on horarios.id_clase=clases.id_clase)
+    join aulas on horarios.id_aula=aulas.id_aula)
     join materias on clases.clv_materia=materias.clv_materia)
-    where id_grupo='$idGroup' AND horarios.id_clase=clases.id_clase AND horarios.id_horario=sesiones.id_horario";
+    join profesores on clases.clv_profe=profesores.clv_profe) where id_grupo='$idGroup'";
     $result = consultToDB($sql);
     getHorarioAlumno($result);
 

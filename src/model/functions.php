@@ -13,23 +13,20 @@ function consultToDB($sentence){
 }
 
 function getHorarioAlumno($result){
+    $horariosJSON='';
     while ($fila = mysqli_fetch_assoc($result)) {
 
         $horariosArray = array(
             'profesor' => $fila['nombre_profesor'],
             'materia' => $fila['nombre_mate'],
-            'hInicio' => $fila['hora_inicio'],
-            'hFinal' => $fila['hora_final'],
-            'diasImp' => $fila['dias_impartidos'],
+            'sesiones' => $fila['sesiones'],
             'aula' => $fila['descripcion']
         );
 
-        $horariosJSON = json_encode($horariosArray);
-        echo $horariosJSON; //Luego de esto iría la parte para enviarlo al js para mandarlo a la vista
-        echo "<br>";
-        echo "<br>";
-        echo "<br>";
+        $auxiliar = json_encode($horariosArray);
+        $horariosJSON = $horariosJSON . $auxiliar;
     }
+    echo $horariosJSON;
 }
 
 function getHorarioProfe($result){
