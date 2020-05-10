@@ -19,11 +19,7 @@ function getLastID($table){
     if ($row = mysqli_fetch_row($resultado)) {
         return trim($row[0]);
     }else{
-        if ($table == 'clases') {
-            return 'C001';
-        } elseif ($table == 'horarios') {
-            return 'H001';
-        }
+        return '0';
     }
 
 }
@@ -31,22 +27,10 @@ function getLastID($table){
 /* Function to create a new key to insert data into the right table */
 function createNewId($table){
     $actualId = getLastID($table);
-    
-    $aux = substr($actualId,1);//The letter of the key is subtracted to increase the index
-    $aux++;//the index is increased
-    if(strlen($aux)==1){
-        $aux = '00' . $aux;
-    }elseif(strlen($aux)==2){
-        $aux = '0' . $aux;
-    }
 
-    $newId = "";//The start of the key is concatenated according to the table
-    if ($table == 'clases') {
-        $newId = 'C' . $aux;
-    } elseif ($table == 'horarios') {
-        $newId = 'H' . $aux;
-    }
-    return $newId;
+    $actualId++;
+
+    return $actualId;
 }
 
 /* Function to get the key of the profesor, the subject or the classroom based on the name */
