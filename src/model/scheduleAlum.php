@@ -1,7 +1,10 @@
 <?php
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Headers: Content-Type');
+
 include 'functions.php';
 
-$idGroup = "G123";//Aquí se cambiaría por el valor del grupo obtenido de acuerdo al alumno
+$idGroup = $_POST['id_grupo'];//Aquí se cambiaría por el valor del grupo obtenido de acuerdo al alumno
 
 if($conexion = connectToDB()){
     

@@ -1,7 +1,10 @@
 <?php
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Headers: Content-Type');
+
 include 'functions.php';
 
-$idProfe = "P00004";
+$idProfe = $_POST['clv_profe'];
 
 if ($conexion = connectToDB()){
 
