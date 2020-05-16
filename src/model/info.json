@@ -14,12 +14,20 @@
       },
       "sesiones": [
         {
+<<<<<<< HEAD
           "dia": 1,
+=======
+          "dia": "1",
+>>>>>>> update
           "inicio": 6,
           "final": 8
         },
         {
+<<<<<<< HEAD
           "dia": 2,
+=======
+          "dia": "2",
+>>>>>>> update
           "inicio": 7,
           "final": 9
         }
@@ -38,7 +46,11 @@
       },
       "sesiones": [
         {
+<<<<<<< HEAD
           "dia": 4,
+=======
+          "dia": "4",
+>>>>>>> update
           "inicio": 7,
           "final": 8.5
         }
