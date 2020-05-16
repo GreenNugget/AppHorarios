@@ -28,7 +28,7 @@ if ($conexion){
 }
 
 if($isUpdated){
-    echo "Eres lo +";
+    echo "Se logró";
 }
 
 ?>
