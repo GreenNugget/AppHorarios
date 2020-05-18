@@ -1,7 +1,13 @@
 <?php
 
-function getLastID($table,$conexion){
-    
+function connectToDB(){
+    //We receive a JSON format for the db conection
+    $dbInfo = json_decode(file_get_contents("db_info.json"));
+    return mysqli_connect($dbInfo->host, $dbInfo->user, $dbInfo->password, $dbInfo->database);
+}
+
+function getLastID($table){
+    $conexion = connectToDB();
     $sql = '';
 
     if ($table == 'clases') {
@@ -19,8 +25,8 @@ function getLastID($table,$conexion){
 }
 
 /* Function to create a new key to insert data into the right table */
-function createNewId($table, $conexion){
-    $actualId = getLastID($table, $conexion);
+function createNewId($table){
+    $actualId = getLastID($table);
 
     $aux = substr($actualId, 1); //The letter of the key is subtracted to increase the index
     if($aux==0){
@@ -45,7 +51,8 @@ function createNewId($table, $conexion){
 }
 
 /* Function to get the key of the profesor, the subject or the classroom based on the name */
-function getKey($table,$name, $conexion){
+function getKey($table,$name){
+    $conexion = connectToDB();
     $sql = '';
 
     if ($table == 'profesores') {

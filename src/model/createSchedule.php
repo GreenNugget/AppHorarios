@@ -4,14 +4,11 @@ header('Access-Control-Allow-Headers: Content-Type');
 
 include 'functions_insert.php';
 
-//We receive a JSON format for the db conection
-$dbInfo = json_decode(file_get_contents("db_info.json"));
-
 //we receive a JSON format for the info
 $horariosJSON = file_get_contents("info.json");
 
 $isSaved = false;
-$conexion = mysqli_connect($dbInfo->host, $dbInfo->user, $dbInfo->password, $dbInfo->database);
+$conexion = connectToDB();
 if ($conexion){
     $horariosDecoded = json_decode($horariosJSON);//we extract the info
     

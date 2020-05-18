@@ -2,7 +2,8 @@
 
 /* Function to know if the connection to the db was successful */
 function connectToDB(){
-    return mysqli_connect('localhost', 'root', '', 'schedexproject');
+    $dbInfo = json_decode(file_get_contents("db_info.json"));
+    return mysqli_connect($dbInfo->host, $dbInfo->user, $dbInfo->password, $dbInfo->database);
 }
 
 /* Function to make a consult to the db*/

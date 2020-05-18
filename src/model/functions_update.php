@@ -1,6 +1,7 @@
 <?php
 function connectToDB(){
-    return mysqli_connect('localhost', 'root', '', 'schedexproject');
+    $dbInfo = json_decode(file_get_contents("db_info.json"));
+    return mysqli_connect($dbInfo->host, $dbInfo->user, $dbInfo->password, $dbInfo->database);
 }
 
 /* Function to get the key of the profesor, the subject or the classroom based on the name */
