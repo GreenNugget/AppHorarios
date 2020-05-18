@@ -4,21 +4,24 @@ header('Access-Control-Allow-Headers: Content-Type');
 
 include 'functions_insert.php';
 
-//we receive a JSON format
+//We receive a JSON format for the db conection
+$dbInfo = json_decode(file_get_contents("db_info.json"));
+
+//we receive a JSON format for the info
 $horariosJSON = file_get_contents("info.json");
 
 $isSaved = false;
-$conexion = connectToDB();
+$conexion = mysqli_connect($dbInfo->host, $dbInfo->user, $dbInfo->password, $dbInfo->database);
 if ($conexion){
     $horariosDecoded = json_decode($horariosJSON);//we extract the info
     
     foreach ($horariosDecoded->clases as $clases) {
         $group = $horariosDecoded->nombreGrupo;
-        $idClass = createNewId('clases');
-        $idSched = createNewId('horarios');
-        $clv_Profe = getKey('profesores', $clases->profesor->nombre_profesor); //nombre del prof
-        $clv_Subj = getKey('materias', $clases->materia->nombre_mate); //nombre de la materia
-        $clv_classroom = getKey('aulas', $clases->aula->descripcion); //nombre del aula
+        $idClass = createNewId('clases', $conexion);
+        $idSched = createNewId('horarios', $conexion);
+        $clv_Profe = getKey('profesores', $clases->profesor->nombre_profesor, $conexion); //nombre del prof
+        $clv_Subj = getKey('materias', $clases->materia->nombre_mate, $conexion); //nombre de la materia
+        $clv_classroom = getKey('aulas', $clases->aula->descripcion, $conexion); //nombre del aula
         $sesiones = json_encode($clases->sesiones); //JSON de las sesiones
         
         $sql_class = "INSERT INTO `clases` (`id_clase`, `clv_profe`, `clv_materia`) VALUES ('$idClass', '$clv_Profe', '$clv_Subj')";
