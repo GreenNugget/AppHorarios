@@ -1,11 +1,7 @@
 <?php
 
-function connectToDB(){
-    return mysqli_connect('localhost', 'root', '', 'schedexproject');
-}
-
-function getLastID($table){
-    $conexion = connectToDB();
+function getLastID($table,$conexion){
+    
     $sql = '';
 
     if ($table == 'clases') {
@@ -23,8 +19,8 @@ function getLastID($table){
 }
 
 /* Function to create a new key to insert data into the right table */
-function createNewId($table){
-    $actualId = getLastID($table);
+function createNewId($table, $conexion){
+    $actualId = getLastID($table, $conexion);
 
     $aux = substr($actualId, 1); //The letter of the key is subtracted to increase the index
     if($aux==0){
@@ -49,8 +45,7 @@ function createNewId($table){
 }
 
 /* Function to get the key of the profesor, the subject or the classroom based on the name */
-function getKey($table,$name){
-    $conexion = connectToDB();
+function getKey($table,$name, $conexion){
     $sql = '';
 
     if ($table == 'profesores') {
