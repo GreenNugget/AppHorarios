@@ -3,14 +3,11 @@
 Este archivo sirve para conectar a la base de datos
 se llama con 'require 'database.php';' al inicio de archivo
 */
-
-$server = 'localhost';
-$username = 'root';
-$password = '';
-$database = 'schedexproject';
+$dbInfo = json_decode(file_get_contents("../src/model/db_info.json"));
+return mysqli_connect($dbInfo->host, $dbInfo->user, $dbInfo->password, $dbInfo->database);
 
 try {
-    $conn = new PDO("mysql:host=$server;dbname=$database;", $username, $password);
+    $conn = new PDO("mysql:host=$dbInfo->host;dbname=$dbInfo->database;", $dbInfo->user, $dbInfo->password);
 } catch (PDOException $e) {
     die('Connection Failed: ' . $e->getMessage());
 }
