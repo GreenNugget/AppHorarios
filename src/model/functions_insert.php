@@ -1,7 +1,6 @@
 <?php
 
 function connectToDB(){
-    //We receive a JSON format for the db conection
     $dbInfo = json_decode(file_get_contents("db_info.json"));
     return mysqli_connect($dbInfo->host, $dbInfo->user, $dbInfo->password, $dbInfo->database);
 }
