@@ -16,7 +16,7 @@ if($conexion = connectToDB()){
     $result = consultToDB($sql);
     $schedule = getHorarioAlumno($result);
 
-    echo substr($schedule,0,-1);//Se substrae la última coma para poder leer el JSON cuando se pida
+    echo "[".substr($schedule,0,-1)."]";//Se substrae la última coma para poder leer el JSON cuando se pida
 
     $conexion->close();//Se cierra la conexión por fin
 } else {
