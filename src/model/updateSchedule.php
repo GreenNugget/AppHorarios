@@ -1,4 +1,12 @@
 <?php
+/*
+*This file receives the information to update the schedules and push it into the database
+*In this file we call another one that contains functions that are mandatory to update the information
+*
+*@author Naomi G.
+*@version 0.5
+*/
+
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: Content-Type');
 

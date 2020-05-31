@@ -1,4 +1,10 @@
 <?php
+/*
+*This file is used to extract the information of the schedules for the professors
+*@author Naomi G.
+*@version 0.3
+*/
+
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: Content-Type');
 
@@ -14,7 +20,7 @@ if ($conexion = connectToDB()){
     join aulas on horarios.id_aula=aulas.id_aula)
     where clv_profe='$idProfe'";
     $result = consultToDB($sql);
-    $schedule = getHorarioProfe($result);
+    $schedule = getScheduleProf($result);
 
     echo substr($schedule, 0, -1);
 

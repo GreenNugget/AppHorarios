@@ -1,10 +1,29 @@
 <?php
+/*
+*This file contains all the functions that are necessary to insert the information of the schedules
+* in the database
+*
+*@author Naomi G.
+*@version 0.5
+*/
 
+/* 
+*This function execute the connection to the databse
+*
+*@return boolean True if the connection was successful and False if it wasn't
+*@version 0.1
+*/
 function connectToDB(){
     $dbInfo = json_decode(file_get_contents("db_info.json"));
     return mysqli_connect($dbInfo->host, $dbInfo->user, $dbInfo->password, $dbInfo->database);
 }
 
+/*
+*This function recovers the last id from the database that was saved
+*@param $table the name of the table (clases or horarios) from whichh we need the id
+*@return the last id, as a string
+*@version 0.3
+*/
 function getLastID($table){
     $conexion = connectToDB();
     $sql = '';
@@ -23,7 +42,12 @@ function getLastID($table){
     }
 }
 
-/* Function to create a new key to insert data into the right table */
+/*
+*Function to create a new key to insert data into the right table 
+*@param $table the name of the table for which the id will be created
+*@return the new id, as a string
+*@version 0.3
+*/
 function createNewId($table){
     $actualId = getLastID($table);
 
@@ -49,7 +73,14 @@ function createNewId($table){
     return $newId;
 }
 
-/* Function to get the key of the profesor, the subject or the classroom based on the name */
+/*
+*Function to get the key of the profesor, the subject or the classroom based on the name
+*
+*@param $table the name of the table from which we want the key
+*@param $name the name of the object from which we need the key
+*@return the key of the object, as a string
+*@version 0.2
+*/
 function getKey($table,$name){
     $conexion = connectToDB();
     $sql = '';

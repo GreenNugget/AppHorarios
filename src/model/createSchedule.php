@@ -1,10 +1,16 @@
 <?php
+/*
+*This file receives the information of the new schedules and push it into the database
+*In this file we call another one that contains functions that are mandatory to insert the information
+*
+*@author Naomi G.
+*@version 0.5
+*/
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: Content-Type');
 
 include 'functions_insert.php';
 
-//we receive a JSON format for the info
 $horariosJSON = file_get_contents("info.json");
 
 $isSaved = false;
@@ -16,10 +22,10 @@ if ($conexion){
         $group = $horariosDecoded->nombreGrupo;
         $idClass = createNewId('clases', $conexion);
         $idSched = createNewId('horarios', $conexion);
-        $clv_Profe = getKey('profesores', $clases->profesor->nombre_profesor, $conexion); //nombre del prof
-        $clv_Subj = getKey('materias', $clases->materia->nombre_mate, $conexion); //nombre de la materia
-        $clv_classroom = getKey('aulas', $clases->aula->descripcion, $conexion); //nombre del aula
-        $sesiones = json_encode($clases->sesiones); //JSON de las sesiones
+        $clv_Profe = getKey('profesores', $clases->profesor->nombre_profesor, $conexion);
+        $clv_Subj = getKey('materias', $clases->materia->nombre_mate, $conexion);
+        $clv_classroom = getKey('aulas', $clases->aula->descripcion, $conexion);
+        $sesiones = json_encode($clases->sesiones);
         
         $sql_class = "INSERT INTO `clases` (`id_clase`, `clv_profe`, `clv_materia`) VALUES ('$idClass', '$clv_Profe', '$clv_Subj')";
         $resultado = $conexion->query($sql_class);
