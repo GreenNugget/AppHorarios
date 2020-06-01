@@ -11,9 +11,11 @@ header('Access-Control-Allow-Headers: Content-Type');
 
 include 'functions.php';
 
-$idGroup = $_POST['id_grupo'];
+$matricula = $_POST['matricula'];
 
 if($conexion = connectToDB()){
+    $requestGroup = consultToDB("SELECT id_grupo from grupos where matricula='$matricula'");
+    $idGroup = mysqli_fetch_assoc($requestGroup)['id_grupo'];
     
     $sql = "select descripcion, sesiones, nombre_profesor, nombre_mate from
     ((((horarios join clases on horarios.id_clase=clases.id_clase)
