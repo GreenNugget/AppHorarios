@@ -22,7 +22,7 @@ if ($conexion = connectToDB()){
     $result = consultToDB($sql);
     $schedule = getScheduleProf($result);
 
-    echo substr($schedule, 0, -1);
+    echo '['.substr($schedule, 0, -1).']';
 
     $conexion->close();
 } else {
