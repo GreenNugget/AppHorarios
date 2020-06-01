@@ -23,7 +23,7 @@ if (!empty($username) && !empty($password)){
 
     if(count($result) > 0 && ($password == $result['userPassword'])){
         $_SESSION['user_id'] = $result['userName'];//la salida es el id de usuario.
-        echo '"Se ingresó correctamente"';
+        echo $result['role'];
         // header("Location: /sesiones/index.php");//cambiar a donde se redireccionará una vez ingresado
     }else{
         $message = 'Sus datos no coinsiden';
