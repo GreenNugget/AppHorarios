@@ -11,7 +11,7 @@ header('Access-Control-Allow-Headers: Content-Type');
 
 include 'functions_insert.php';
 
-$horariosJSON = file_get_contents("info.json");
+$horariosJSON = $_POST['horarios'];
 
 $isSaved = false;
 $conexion = connectToDB();
